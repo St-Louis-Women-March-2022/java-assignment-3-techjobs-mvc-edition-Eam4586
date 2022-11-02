@@ -1,9 +1,18 @@
+<!---This lives AT /jobs!!  Page establishes the navigation bar and page title. Add code w\ job information.
+**HOw are you going to access the properties of the job object** That will help me populate
+create a loop to display each job passed in from the controller.
+Job data should be presented in tables, with each job in its own table.  Column?  A single table.
+Construct a table for each job, with one job field per row.
+Check in ListController to find the variable names available to the template.
+Add CSS class "job-listing" to a table for styling.
+Test code by running and clicking links from different categories on the /list page.  1. Clicking the Web - Back End link yields 6 jobs.  2. iOS yields 4 jobs.  3. New York yields 1 job.--->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body>
 
+<body>
 <div th:replace="fragments :: page-header"></div>
 
 <div class="container body-content">
@@ -12,7 +21,32 @@
 
     <!-- TODO #1 - Use a loop to display job results in a table. -->
 
+    <table th:each ="job : ${jobs}" class="job-listing">
+        <tr>
+            <td>ID</td>
+            <td th:text="${job.id}"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td th:text="${job.name}"></td>
+        </tr>
+        <tr>
+            <td>Employer</td>
+            <td th:text="${job.employer}"></td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td th:text="${job.location}"></td>
+        </tr>
+        <tr>
+            <td>Position Type</td>
+            <td th:text="${job.positionType}"></td>
+        </tr>
+        <tr>
+            <td>Skill</td>
+            <td th:text="${job.coreCompetency}"></td>
+        </tr>
+    </table>
 </div>
-
 </body>
 </html>
