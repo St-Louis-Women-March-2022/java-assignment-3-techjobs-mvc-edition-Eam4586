@@ -15,14 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by LaunchCode
+ This reads data from job_data.csv and stores it in Array list of Job objects
+ Stores in src/main/resources directory. Controllers and views have a “Home”, “List”, and “Search” page.
+ JobData also builds ArrayLists for the Employer,Location, PositionType, and CoreCompetency objects.
+ The “model” is contained in the JobData class
  */
 public class JobData {
 
     private static final String DATA_FILE = "job_data.csv";
     private static boolean isDataLoaded = false;
 
-    private static ArrayList<Job> allJobs;
+    private static ArrayList<Job> allJobs = new ArrayList<>();
     private static ArrayList<Employer> allEmployers = new ArrayList<>();
     private static ArrayList<Location> allLocations = new ArrayList<>();
     private static ArrayList<PositionType> allPositionTypes = new ArrayList<>();
@@ -67,6 +70,7 @@ public class JobData {
             jobs = findByValue(value);
             return jobs;
         }
+
         for (Job job : allJobs) {
 
             String aValue = getFieldValue(job, column);
@@ -204,6 +208,12 @@ public class JobData {
             System.out.println("Failed to load job data");
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<Job> getAllJobs() {
+        loadData();
+        allJobs.sort(new NameSorter());
+        return allJobs;
     }
 
     public static ArrayList<Employer> getAllEmployers() {

@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.HashMap;
 
 /**
- * Created by LaunchCode
+ This class has only one handler method,
+ index, which displays the home page for the app.
+ The controller renders the index.html template
+ (in src/main/resources/templates)
+ and provides a fairly simple view
  */
 @Controller
 public class HomeController {
