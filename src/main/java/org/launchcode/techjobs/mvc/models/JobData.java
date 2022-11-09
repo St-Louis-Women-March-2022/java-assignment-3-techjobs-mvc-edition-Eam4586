@@ -14,12 +14,6 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- This reads data from job_data.csv and stores it in Array list of Job objects
- Stores in src/main/resources directory. Controllers and views have a “Home”, “List”, and “Search” page.
- JobData also builds ArrayLists for the Employer,Location, PositionType, and CoreCompetency objects.
- The “model” is contained in the JobData class
- */
 public class JobData {
 
     private static final String DATA_FILE = "job_data.csv";
@@ -105,7 +99,7 @@ public class JobData {
      * @param value The search term to look for.
      * @return      List of all jobs with at least one field containing the value.
      */
-    public static ArrayList<Job> findByValue(String value) {
+    public static ArrayList<Job> findByValue(String value) {//this takes my search term, looks through my array list nd searches for if they contain it and adds it to the new "jobs" array list
 
         // load data, if not already loaded
         loadData();
