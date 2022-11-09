@@ -36,8 +36,35 @@
 
     <hr />
 
-    <!-- TODO #4 - Loop over the search results to display all job fields. -->
+    <!-- TODO #4 - Loop over the search results to display all job fields. create a loop to display each job passed in from the controller. Put the job results into a set of tables, similar to what you did for the list-jobs view.  You can reuse the code you just wrote in list-jobs.html by defining a new fragment in that file. Then you need to include that fragment in search.html. For the fragment to work properly in both files, the variables passed in by model.addAttribute() must use the same names.
 
+-->
+    <table th:each ="job : ${jobs}" class="job-listing">
+        <tr>
+            <td>ID</td>
+            <td th:text="${job.id}"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td th:text="${job.name}"></td>
+        </tr>
+        <tr>
+            <td>Employer</td>
+            <td th:text="${job.employer}"></td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td th:text="${job.location}"></td>
+        </tr>
+        <tr>
+            <td>Position Type</td>
+            <td th:text="${job.positionType}"></td>
+        </tr>
+        <tr>
+            <td>Skill</td>
+            <td th:text="${job.coreCompetency}"></td>
+        </tr>
+    </table>
 </div>
 
 </body>

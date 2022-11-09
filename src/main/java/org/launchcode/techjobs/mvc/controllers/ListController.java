@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by LaunchCode
- */
 @Controller
 @RequestMapping(value = "list")
 public class ListController {
@@ -43,22 +40,25 @@ public class ListController {
         model.addAttribute("locations", JobData.getAllLocations());
         model.addAttribute("positions", JobData.getAllPositionTypes());
         model.addAttribute("skills", JobData.getAllCoreCompetency());
-
         return "list";
     }
+
 
     @GetMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
         ArrayList<Job> jobs;
+
         if (column.equals("all")){
             jobs = JobData.findAll();
             model.addAttribute("title", "All Jobs");
+
         } else {
             jobs = JobData.findByColumnAndValue(column, value);
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
-        model.addAttribute("jobs", jobs);
 
-        return "list-jobs";
+        model.addAttribute("jobs", jobs);//this makes jobs accessible
+
+        return "list-jobs";//inside list-jobs
     }
 }

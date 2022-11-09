@@ -14,15 +14,12 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by LaunchCode
- */
 public class JobData {
 
     private static final String DATA_FILE = "job_data.csv";
     private static boolean isDataLoaded = false;
 
-    private static ArrayList<Job> allJobs;
+    private static ArrayList<Job> allJobs = new ArrayList<>();
     private static ArrayList<Employer> allEmployers = new ArrayList<>();
     private static ArrayList<Location> allLocations = new ArrayList<>();
     private static ArrayList<PositionType> allPositionTypes = new ArrayList<>();
@@ -67,6 +64,7 @@ public class JobData {
             jobs = findByValue(value);
             return jobs;
         }
+
         for (Job job : allJobs) {
 
             String aValue = getFieldValue(job, column);
@@ -101,7 +99,7 @@ public class JobData {
      * @param value The search term to look for.
      * @return      List of all jobs with at least one field containing the value.
      */
-    public static ArrayList<Job> findByValue(String value) {
+    public static ArrayList<Job> findByValue(String value) {//this takes my search term, looks through my array list nd searches for if they contain it and adds it to the new "jobs" array list
 
         // load data, if not already loaded
         loadData();
@@ -204,6 +202,12 @@ public class JobData {
             System.out.println("Failed to load job data");
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<Job> getAllJobs() {
+        loadData();
+        allJobs.sort(new NameSorter());
+        return allJobs;
     }
 
     public static ArrayList<Employer> getAllEmployers() {
